@@ -72,12 +72,12 @@ export default function QuoteViewer({ quote, onClose, onEdit, onDownload, onUpgr
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: {
         scale: 2,
-        useCORS: false,
-        allowTaint: true,
+        useCORS: true,
+        allowTaint: false,
         logging: false,
         backgroundColor: '#ffffff',
          width: 794,
-        height: 1124
+        height: 1133
       },
       jsPDF: {
         unit: 'mm',

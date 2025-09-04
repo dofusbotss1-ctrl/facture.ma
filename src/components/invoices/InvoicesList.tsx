@@ -159,7 +159,7 @@ export default function InvoicesList() {
       html2canvas: { 
         scale: 2,
         useCORS: true,
-        allowTaint: true,
+        allowTaint: false,
         logging: false,
         backgroundColor: '#ffffff',
         width: 800,

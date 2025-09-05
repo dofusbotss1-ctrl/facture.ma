@@ -729,7 +729,113 @@ export default function StockManagement() {
           />
         </div>
       )}
+   {/* Tableau détaillé */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+        <div className="px-6 py-4 border-b border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900">Analyse Détaillée par Produit</h3>
+        </div>
 
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Produit
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Stock Initial
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Qté Vendue
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Stock Restant
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Valeur d'Achat
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Valeur de Vente
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Marge Brute
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {detailedData.map((product) => (
+                <tr key={product.id} className="hover:bg-gray-50 transition-colors">
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div>
+                      <div className="text-sm font-medium text-gray-900">{product.name}</div>
+                      <div className="text-xs text-gray-500">{product.category}</div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm font-medium text-gray-900">
+                      {product.stock.toFixed(3)} {product.unit}
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      Min: {product.minStock.toFixed(3)} {product.unit}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm font-medium text-gray-900">
+                      {product.quantitySold.toFixed(3)} {product.unit}
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      {product.ordersCount} commande{product.ordersCount > 1 ? 's' : ''}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="flex items-center space-x-2">
+                      <span className={`text-sm font-medium ${
+                        product.remainingStock <= product.minStock ? 'text-red-600' : 'text-gray-900'
+                      }`}>
+                        {product.remainingStock.toFixed(3)} {product.unit}
+                      </span>
+                      {product.remainingStock <= product.minStock && (
+                        <AlertTriangle className="w-4 h-4 text-red-500" />
+                      )}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {product.purchaseValue.toLocaleString()} MAD
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {product.salesValue.toLocaleString()} MAD
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="flex items-center space-x-2">
+                      <span className={`text-sm font-bold ${
+                        product.margin >= 0 ? 'text-green-600' : 'text-red-600'
+                      }`}>
+                        {product.margin >= 0 ? '+' : ''}{product.margin.toLocaleString()} MAD
+                      </span>
+                      {product.margin >= 0 ? (
+                        <CheckCircle className="w-4 h-4 text-green-500" />
+                      ) : (
+                        <XCircle className="w-4 h-4 text-red-500" />
+                      )}
+                    </div>
+                    {product.margin < 0 && (
+                      <div className="text-xs text-red-600 mt-1">
+                        Besoin: +{Math.abs(product.margin).toLocaleString()} MAD
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {detailedData.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500">Aucun produit trouvé</p>
+          </div>
+        )}
+      </div>
       {/* Indicateur de performance global */}
       {stats.grossMargin < 0 && (
         <div className="bg-red-50 border border-red-200 rounded-xl p-6">

@@ -100,6 +100,8 @@ export default function StockManagement() {
     return months;
   };
 
+    const detailedData = getDetailedProductData();
+
   const generateDonutData = (type: 'sales' | 'stock') => {
     const colors = [
       '#8B5CF6', '#06B6D4', '#10B981', '#F59E0B', '#EF4444',

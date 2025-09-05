@@ -639,7 +639,7 @@ export default function StockManagement() {
             </div>
           </div>
         </div>
-
+     </div>
 
 
 

@@ -533,68 +533,20 @@ export default function StockManagement() {
       {/* Contenu des onglets */}
       {activeTab === 'overview' && (
         <div className="space-y-6">
-          {/* Dashboard - Blocs d'indicateurs existants */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
-                  <Package className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-gray-900">{stats.totalStockInitial.toFixed(0)}</p>
-                  <p className="text-sm text-gray-600">Stock Initial</p>
-                </div>
-              </div>
-            </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
-                  <DollarSign className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-gray-900">{stats.totalSalesValue.toLocaleString()}</p>
-                  <p className="text-sm text-gray-600">Valeur de Vente (MAD)</p>
-                </div>
-              </div>
-            </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <div className="flex items-center space-x-3">
-                <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                  stats.grossMargin >= 0 
-                    ? 'bg-gradient-to-br from-green-500 to-emerald-600' 
-                    : 'bg-gradient-to-br from-red-500 to-red-600'
-                }`}>
-                  {stats.grossMargin >= 0 ? (
-                    <TrendingUp className="w-6 h-6 text-white" />
-                  ) : (
-                    <TrendingDown className="w-6 h-6 text-white" />
-                  )}
-                </div>
-                <div>
-                  <p className={`text-2xl font-bold ${
-                    stats.grossMargin >= 0 ? 'text-green-600' : 'text-red-600'
-                  }`}>
-                    {stats.grossMargin >= 0 ? '+' : ''}{stats.grossMargin.toLocaleString()}
-                  </p>
-                  <p className="text-sm text-gray-600">Marge Brute (MAD)</p>
-                </div>
-              </div>
-            </div>
 
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg flex items-center justify-center">
-                  <AlertTriangle className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-gray-900">{stats.dormantProducts}</p>
-                  <p className="text-sm text-gray-600">Produits Non Vendus</p>
-                </div>
-              </div>
-            </div>
-          </div>
+
+
+
+
+
+
+
+
+
+
+          
 
           {/* Graphiques de synthèse */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

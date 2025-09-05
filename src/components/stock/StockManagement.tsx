@@ -535,7 +535,110 @@ export default function StockManagement() {
         <div className="space-y-6">
 
 
+  {/* Dashboard - Blocs d'indicateurs */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Stock Initial */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
+              <Package className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-gray-900">{stats.totalStockInitial.toFixed(0)}</p>
+              <p className="text-sm text-gray-600">Stock Initial</p>
+            </div>
+          </div>
+        </div>
 
+        {/* Valeur d'Achat */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center">
+              <ShoppingCart className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-gray-900">{stats.totalPurchaseValue.toLocaleString()}</p>
+              <p className="text-sm text-gray-600">Valeur d'Achat (MAD)</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Valeur de Vente */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+              <DollarSign className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-gray-900">{stats.totalSalesValue.toLocaleString()}</p>
+              <p className="text-sm text-gray-600">Valeur de Vente (MAD)</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Marge Brute */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center space-x-3">
+            <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+              stats.grossMargin >= 0 
+                ? 'bg-gradient-to-br from-green-500 to-emerald-600' 
+                : 'bg-gradient-to-br from-red-500 to-red-600'
+            }`}>
+              {stats.grossMargin >= 0 ? (
+                <TrendingUp className="w-6 h-6 text-white" />
+              ) : (
+                <TrendingDown className="w-6 h-6 text-white" />
+              )}
+            </div>
+            <div>
+              <p className={`text-2xl font-bold ${
+                stats.grossMargin >= 0 ? 'text-green-600' : 'text-red-600'
+              }`}>
+                {stats.grossMargin >= 0 ? '+' : ''}{stats.grossMargin.toLocaleString()}
+              </p>
+              <p className="text-sm text-gray-600">Marge Brute (MAD)</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Stock Restant */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-lg flex items-center justify-center">
+              <Package className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-gray-900">{stats.totalRemainingStock.toFixed(0)}</p>
+              <p className="text-sm text-gray-600">Stock Restant</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Quantité Vendue */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
+              <BarChart3 className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-gray-900">{stats.totalQuantitySold.toFixed(0)}</p>
+              <p className="text-sm text-gray-600">Quantité Vendue</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Produits Dormants */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="flex items-center space-x-3">
+            <div className="w-12 h-12 bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg flex items-center justify-center">
+              <AlertTriangle className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-gray-900">{stats.dormantProducts}</p>
+              <p className="text-sm text-gray-600">Produits Non Vendus</p>
+            </div>
+          </div>
+        </div>
 
 
 

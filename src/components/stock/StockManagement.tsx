@@ -99,6 +99,47 @@ export default function StockManagement() {
     
     return months;
   };
+  // Données détaillées par produit
+  const getDetailedProductData = () => {
+    return products.map(product => {
+      let quantitySold = 0;
+      let salesValue = 0;
+      let ordersCount = 0;
+      const ordersSet = new Set();
+
+      invoices.forEach(invoice => {
+        let hasProduct = false;
+        invoice.items.forEach(item => {
+          if (item.description === product.name) {
+            quantitySold += item.quantity;
+            salesValue += item.total;
+            hasProduct = true;
+          }
+        });
+        if (hasProduct) {
+          ordersSet.add(invoice.id);
+        }
+      });
+
+      ordersCount = ordersSet.size;
+      const remainingStock = product.stock - quantitySold;
+      const purchaseValue = product.stock * product.purchasePrice;
+      const margin = salesValue - (quantitySold * product.purchasePrice);
+
+      return {
+        ...product,
+        quantitySold,
+        salesValue,
+        ordersCount,
+        remainingStock,
+        purchaseValue,
+        margin
+      };
+    }).filter(product => {
+      if (selectedProduct === 'all') return true;
+      return product.id === selectedProduct;
+    });
+  };
 
     const detailedData = getDetailedProductData();
 

@@ -376,7 +376,6 @@ export default function StockManagement() {
   const tabs = [
     { id: 'overview', label: 'Vue d\'ensemble', icon: BarChart3 },
     { id: 'evolution', label: 'Évolution', icon: TrendingUp },
-    { id: 'distribution', label: 'Répartition', icon: PieChart },
     { id: 'margins', label: 'Marges', icon: DollarSign },
     { id: 'heatmap', label: 'Heatmap', icon: Activity }
   ];
